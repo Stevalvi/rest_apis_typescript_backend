@@ -1,0 +1,19 @@
+{ // Al colocar en la consola npx tsc automáticamente compila nuestra aplicación para producción, y convierte todo ese código de typescript a una versión de javascript, sería como colocar npm run build, pero acá lo hacemos de esta forma, y no hay que especificarle nada, ya que se basa en esta configuración y compila esos archivos en /dist
+
+    "compilerOptions": { // Estas son las opciones para compilar nuestro proyecto
+        "outDir": "./dist", // Una vez que lo compile lo va a crear en esa carpeta
+        "rootDir": "./src", // Le decimos dónde va a encontrar esos archivos, osea el directorio principal.
+        "lib": ["esnext"], // Le decimos que queremos soportar
+        "target": "ESNext", // Es la versión que queremos compilar, en este caso, ESNext utiliza la versión más reciente.
+        "moduleResolution": "NodeNext", // También el moduleResolution: como NodeNext
+        "module": "NodeNext", // Y al agregarle esa configuración de moduleResolution debemos agregar esta de module. Lo que es el target, moduleResolution y module son configuraciones que se agregaron para poder usar la última versión y poder agregar esas tablas que creamos en el modelo a la base de datos.
+        "strict": false, // En modo true no nos permite el modo any, se recomienda usarlo en false cuándo estamos iniciando.
+        "sourceMap": true, // Eso genera los mapas con información interna, en especial cuándo estamos trabajando con un debugger y otras opciones. 
+        "esModuleInterop": true, // Va a ser común que cuándo estemos trabajando con JS tengamos módulos y proyectos con Commonjs, entonces ese esModuleInterop nos va a permitir poder importar alguna librería que esté escrita en Commonjs para nuestro proyecto.
+        "declaration": true, // Nos va a generar los archivos de definición
+        "experimentalDecorators": true,// Para que typescript agregue el soporte de esos decoradores de Product.model.ts y se puedan agregar esos decoradores para crear nuestras tablas en la base de datos
+        "emitDecoratorMetadata": true // Para que typescript agregue el soporte de esos decoradores de Product.model.ts y se puedan agregar esos decoradores para crear nuestras tablas en la base de datos
+    },
+    "include": ["src/**/*.ts"], // Los archivos que queremos incluir en la compilación, queremos agregar a la compilación todos los archivos que estén dentro de src y los que tengan la extensión de ts.
+    "exclude": ["src/**/*.test.ts"]// Para sacar ciertos archivos de la compilación a la hora de hacer el build de producción. Le decimos que ignore todos los archivos que finalicen en test.ts
+}
